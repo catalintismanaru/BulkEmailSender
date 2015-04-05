@@ -1,0 +1,81 @@
+<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:System="clr-namespace:System;assembly=mscorlib" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Name="mainWindow" x:Class="Bulk_Email_Sender.MainWindow"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        Title="Bulk Email Sender" Height="525" Width="700">
+    <Viewbox Stretch="Fill" Margin="0,0,0,-1">
+        <Grid Height="495" Width="692">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="7.5*"/>
+                <RowDefinition Height="70*"/>
+                <RowDefinition Height="20*"/>
+                <RowDefinition Height="7.5*"/>
+            </Grid.RowDefinitions>
+            <Menu x:Name="menuControl" RenderTransformOrigin="0.18,-4.083" Height="36" Width="692">
+            </Menu>
+            <TextBox x:Name="subjectTextBox" HorizontalAlignment="Left" Height="23" Margin="10,32,0,0" Grid.Row="1" TextWrapping="NoWrap"  VerticalAlignment="Top" Width="200"/>
+            <Label Content="Subject" HorizontalAlignment="Left" Margin="10,6,0,0" Grid.Row="1" VerticalAlignment="Top" Width="53"/>
+            <Label Content="From" HorizontalAlignment="Left" Margin="10,55,0,0" Grid.Row="1" VerticalAlignment="Top" Width="53" RenderTransformOrigin="0.434,0.077"/>
+            <TextBox x:Name="fromTextBox" HorizontalAlignment="Left" Height="23" Margin="10,81,0,0" Grid.Row="1" TextWrapping="NoWrap" VerticalAlignment="Top" Width="200" LostFocus="fromTextBox_LostFocus"/>
+            <Label Content="User" HorizontalAlignment="Left" Margin="10,104,0,0" Grid.Row="1" VerticalAlignment="Top" RenderTransformOrigin="2,0.962"/>
+            <TextBox x:Name="userTextBox" HorizontalAlignment="Left" Height="23" Margin="10,130,0,0" Grid.Row="1" TextWrapping="NoWrap" VerticalAlignment="Top" Width="200"/>
+            <Label Content="Password" HorizontalAlignment="Left" Margin="10,153,0,0" Grid.Row="1" VerticalAlignment="Top" RenderTransformOrigin="2,0.962"/>
+            <PasswordBox x:Name="passwordBox" HorizontalAlignment="Left" Margin="10,179,0,0" Grid.Row="1" VerticalAlignment="Top" Width="200" Height="23"/>
+            <Label Content="SMTP Server" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="2,0.962" Margin="10,202,0,0" Grid.Row="1"/>
+            <TextBox x:Name="SMTPServerTextBox" HorizontalAlignment="Left" Height="23" Margin="91,204,0,0" Grid.Row="1" TextWrapping="NoWrap" VerticalAlignment="Top" Width="119"/>
+            <Label Content="Emails files" HorizontalAlignment="Left" Margin="10,227,0,0" Grid.Row="1" VerticalAlignment="Top" RenderTransformOrigin="2,0.962"/>
+            <ListBox x:Name="emailsFilesListBox" HorizontalAlignment="Left" Height="67" Margin="10,254,0,0" Grid.Row="1" VerticalAlignment="Top" Width="147"/>
+            <Button x:Name="emailsAdd" Content="Add" HorizontalAlignment="Left" Margin="162,254,0,0" Grid.Row="1" VerticalAlignment="Top" Width="48" Height="19" Click="emailsAdd_Click"/>
+            <Button x:Name="emailsClearAll" Content="Clear all" HorizontalAlignment="Left" Margin="162,302,0,0" Grid.Row="1" VerticalAlignment="Top" Width="48" Height="19" Click="emailsClearAll_Click"/>
+            <Button x:Name="emailsRemove" Content="Remove" HorizontalAlignment="Left" Margin="162,278,0,0" Grid.Row="1" VerticalAlignment="Top" Width="48" Height="19" RenderTransformOrigin="0.5,5.316" Click="emailsRemove_Click"/>
+            <Label Content="Compose your message" HorizontalAlignment="Left" Margin="225,5,0,0" Grid.Row="1" VerticalAlignment="Top" Width="311"/>
+            <RichTextBox x:Name="richTextBox" HorizontalAlignment="Left" Height="261" Margin="225,55,0,0" VerticalAlignment="Top" Width="457" Grid.Row="1" VerticalScrollBarVisibility="Auto" FontFamily="{Binding ElementName=fontComboBox,Path=SelectedValue}" FontSize="{Binding ElementName=sizeComboBox,Path=SelectedValue}">
+                <FlowDocument/>
+            </RichTextBox>
+            <ToolBar x:Name="toolBar" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="1.375,0.769" Width="457" Height="28" Margin="225,27,0,0" Grid.Row="1">
+                <ToggleButton x:Name="BToggleButton" Content="Bold" Command="EditingCommands.ToggleBold" CommandTarget="{Binding ElementName=richTextBox}"/>
+                <ToggleButton x:Name="IToggleButton" Content="Italic" Command="EditingCommands.ToggleItalic" CommandTarget="{Binding ElementName=richTextBox}"/>
+                <ToggleButton x:Name="UToggleButton" Content="Underline" Margin="0,0,0,1" Command="EditingCommands.ToggleUnderline" CommandTarget="{Binding ElementName=richTextBox}"/>
+                <ComboBox x:Name="fontComboBox" Height="23" Margin="0" VerticalAlignment="Top" Width="160" ItemsSource="{Binding Source={x:Static Member=Fonts.SystemFontFamilies}}" SelectedValue="Arial" SelectedIndex="12">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock FontFamily="{Binding .}" Text="{Binding Source}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <ComboBox x:Name="sizeComboBox" Height="23" Margin="0" VerticalAlignment="Top" Width="40" SelectedIndex="6">
+                    <sys:Double>6</sys:Double>
+                    <sys:Double>7</sys:Double>
+                    <sys:Double>8</sys:Double>
+                    <sys:Double>9</sys:Double>
+                    <sys:Double>10</sys:Double>
+                    <sys:Double>11</sys:Double>
+                    <sys:Double>12</sys:Double>
+                    <sys:Double>14</sys:Double>
+                    <sys:Double>16</sys:Double>
+                    <sys:Double>18</sys:Double>
+                    <sys:Double>20</sys:Double>
+                    <sys:Double>22</sys:Double>
+                    <sys:Double>24</sys:Double>
+                    <sys:Double>36</sys:Double>
+                    <sys:Double>48</sys:Double>
+                    <sys:Double>72</sys:Double>
+                </ComboBox>
+            </ToolBar>
+            <Label Content="Attachaments" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Top" Margin="10,0,0,0"/>
+            <ListBox x:Name="attachementsListBox" HorizontalAlignment="Left" Height="68" Margin="10,26,0,0" Grid.Row="2" VerticalAlignment="Top" Width="576" RenderTransformOrigin="0.586,0.057"/>
+            <Button x:Name="attachementsAdd" HorizontalAlignment="Left" Margin="591,26,0,0" Grid.Row="2" VerticalAlignment="Top" Width="91" Height="18" Content="Add" Click="attachementsAdd_Click"/>
+            <Button x:Name="attachementsRemove" Content="Remove" HorizontalAlignment="Left" Width="91" RenderTransformOrigin="0.467,2.25" Margin="591,49,0,25" Grid.Row="2" Click="attachementsRemove_Click"/>
+            <Button x:Name="attachementsClearAll" Content="Clear All" HorizontalAlignment="Left" Margin="591,74,0,0" Grid.Row="2" VerticalAlignment="Top" Width="91" Height="20" RenderTransformOrigin="0.6,3.667" Click="attachementsClearAll_Click"/>
+            <Button x:Name="startSendingEmailsButton" Content="Start sending emails" HorizontalAlignment="Left" Margin="10,5,0,0" Grid.Row="3" VerticalAlignment="Top" Width="118" Height="20" Click="startSendingEmailsButton_Click"/>
+            <Button x:Name="stopSendingEmailsButton" Content="Stop" HorizontalAlignment="Left" Margin="135,5,0,0" Grid.Row="3" VerticalAlignment="Top" Width="75" Height="20" Click="stopSendingEmailsButton_Click"/>
+            <Label Content="SMTP Port" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="2,0.962" Margin="92,227,0,0" Grid.Row="1"/>
+            <TextBox x:Name="SMTPPortTextBox" HorizontalAlignment="Left" Height="23" Margin="157,230,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="54" RenderTransformOrigin="0.625,1.217" LostFocus="SMTPPortTextBox_LostFocus"/>
+            <Grid HorizontalAlignment="Left" Height="35" Margin="210,0,0,0" Grid.Row="3" VerticalAlignment="Top" Width="482">
+                <ProgressBar x:Name="progressBar" IsEnabled="True" HorizontalAlignment="Left" Height="20" Margin="10,6,0,0" VerticalAlignment="Top" Width="462" Minimum="0" Maximum="100"/>
+                <TextBlock Text="{Binding ElementName=progressBar, Path=Value, StringFormat={}{0:0}%}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            </Grid>
+        </Grid>
+    </Viewbox>
+</Window>
