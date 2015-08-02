@@ -37,8 +37,8 @@ namespace Bulk_Email_Sender
             }
             else
             {
-                var foo = new EmailAddressAttribute();
-                if (!foo.IsValid(fromTextBox.Text))
+                var temp = new EmailAddressAttribute();
+                if (!temp.IsValid(fromTextBox.Text))
                 {
                     MessageBox.Show("Invalid email address format");
                     fromTextBox.Text = " - Insert a valid email address";
