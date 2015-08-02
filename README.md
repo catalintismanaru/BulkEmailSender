@@ -2,7 +2,7 @@
 information, in order to customise each subject and body fields, if that’s what the user wishes.
 
 Both email subject and body inserted  in the GUI  may  contain  strings like “{1}”,”{2}”, so that one can indicate which CSV column values should replace them, during the process of sending the messages, resulting in the customisation I have already mentioned.
-Given the test.csv file (uploaded as well on github.com/BulkEmailSender), let's suppose the user inserts in the GUI the following email subject and body:
+Given the recipients.csv file (uploaded as well on github.com/BulkEmailSender), let's suppose the user inserts in the GUI the following email subject and body:
 
 Subject:
 I look forward to visiting {3}
