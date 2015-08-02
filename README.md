@@ -18,7 +18,7 @@ Catalin Tismanaru
 
 
 Given the fact that both subject and body contain substrings like {"numberOfColumn"}, before sending each email message, both will be changed.
-For example the message sent to user1@yahoo.com (first field of the first row of test.csv file) will have the following subject and body:
+For example the message sent to user1@yahoo.com (first field of the first row of recipients.csv file) will have the following subject and body:
 
 Subject: 
 I look forward to visiting United Kingdom
